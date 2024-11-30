@@ -2,11 +2,11 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Delete,
   Body,
   Param,
   ParseIntPipe,
-  Put,
 } from '@nestjs/common';
 import { OrderService } from '../../application/services/order.service';
 import { CreateOrderDto } from '../../application/dtos/request/create-order.dto';
@@ -43,7 +43,7 @@ export class OrderController {
   @ApiOperation({ summary: 'Update an order' })
   @ApiResponse({ status: 200, description: 'Order updated successfully.' })
   @ApiResponse({ status: 404, description: 'Order not found.' })
-  @Put(':id')
+  @Patch(':id')
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateOrderDto: UpdateOrderDto,

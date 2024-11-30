@@ -2,11 +2,11 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Delete,
   Body,
   Param,
   ParseIntPipe,
-  Put,
 } from '@nestjs/common';
 import { ProductService } from '../../application/services/product.service';
 import { CreateProductDto } from '../../application/dtos/request/create-product.dto';

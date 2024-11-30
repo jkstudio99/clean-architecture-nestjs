@@ -2,11 +2,11 @@ import {
   Controller,
   Get,
   Post,
+  Patch,
   Delete,
   Body,
   Param,
   ParseIntPipe,
-  Put,
 } from '@nestjs/common';
 import { OrderService } from '../../application/services/order.service';
 import { CreateOrderDto } from '../../application/dtos/request/create-order.dto';
