@@ -1,99 +1,116 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# **Order and Product Management API**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This project is a full-stack **NestJS** application designed to manage orders and products. It leverages **Prisma** as the ORM for database management, follows the **clean architecture pattern**, and includes **Swagger** for API documentation.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## **Features**
+- CRUD operations for **Orders** and **Products**.
+- **Swagger** integration for API exploration and testing.
+- Clean architecture for maintainability and scalability.
+- **Prisma ORM** for database interaction.
 
-## Project setup
+---
 
-```bash
-$ npm install
+## **Project Structure**
+This project follows a modular and clean architecture. Below is a simplified structure:
+
+```plaintext
+src/
+├── application/            # Application-specific logic
+│   ├── dto/                # Data Transfer Objects (Request & Response)
+│   │   ├── request/
+│   │   └── response/
+│   └── services/           # Business logic for Orders and Products
+├── domain/                 # Core business logic
+│   ├── entities/           # Entities for domain models
+│   └── repositories/       # Repository interfaces
+├── infrastructure/         # Infrastructure implementations (Prisma)
+│   ├── prisma/             # Prisma client
+│   └── repositories/       # Repository implementations
+└── interface/              # HTTP layer
+    ├── controllers/        # REST API controllers
+    └── http/
 ```
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ npm run start
+## **Getting Started**
 
-# watch mode
-$ npm run start:dev
+### **Prerequisites**
+- Node.js v18+ (latest LTS recommended)
+- npm v9+
+- MySQL database (or other Prisma-supported database)
 
-# production mode
-$ npm run start:prod
+---
+
+### **Installation**
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-repo/order-product-app.git
+   cd order-product-app
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Prisma**
+   - Create a `.env` file in the root directory and add the following:
+     ```env
+     DATABASE_URL="mysql://user:password@localhost:3306/order_product_db"
+     ```
+   - Initialize Prisma and generate the client:
+     ```bash
+     npx prisma migrate dev --name init
+     npx prisma generate
+     ```
+
+4. **Run the application**
+   ```bash
+   npm run start:dev
+   ```
+
+---
+
+### **API Documentation**
+
+The API documentation is automatically generated using **Swagger**. After starting the application, navigate to:
+
+```
+http://localhost:3000/api
 ```
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
+## **Available Endpoints**
 
-# e2e tests
-$ npm run test:e2e
+### **Order Endpoints**
+- `GET /orders` - Retrieve all orders.
+- `GET /orders/:id` - Retrieve a single order by ID.
+- `POST /orders` - Create a new order.
+- `PATCH /orders/:id` - Update an order.
+- `DELETE /orders/:id` - Delete an order.
 
-# test coverage
-$ npm run test:cov
-```
+### **Product Endpoints**
+- `GET /products` - Retrieve all products.
+- `GET /products/:id` - Retrieve a single product by ID.
+- `POST /products` - Create a new product.
+- `PATCH /products/:id` - Update a product.
+- `DELETE /products/:id` - Delete a product.
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## **Technologies Used**
+- **NestJS**: Backend framework.
+- **Prisma**: ORM for database interaction.
+- **Swagger**: API documentation.
+- **MySQL**: Database.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## **License**
+This project is licensed under the MIT License.
