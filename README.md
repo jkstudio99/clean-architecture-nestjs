@@ -92,14 +92,14 @@ http://localhost:3000/api
 - `GET /orders` - Retrieve all orders.
 - `GET /orders/:id` - Retrieve a single order by ID.
 - `POST /orders` - Create a new order.
-- `PATCH /orders/:id` - Update an order.
+- `PUT /orders/:id` - Update an order.
 - `DELETE /orders/:id` - Delete an order.
 
 ### **Product Endpoints**
 - `GET /products` - Retrieve all products.
 - `GET /products/:id` - Retrieve a single product by ID.
 - `POST /products` - Create a new product.
-- `PATCH /products/:id` - Update a product.
+- `PUT /products/:id` - Update a product.
 - `DELETE /products/:id` - Delete a product.
 
 ---
