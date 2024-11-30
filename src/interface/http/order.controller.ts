@@ -22,7 +22,7 @@ export class OrderController {
   @ApiResponse({ status: 200, description: 'Return all orders.' })
   @Get()
   async getAll() {
-    return this.orderService.getAllOrders();
+    return await this.orderService.getAllOrders();
   }
 
   @ApiOperation({ summary: 'Get an order by id' })
@@ -30,14 +30,14 @@ export class OrderController {
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number) {
-    return this.orderService.getOrderById(id);
+    return await this.orderService.getOrderById(id);
   }
 
   @ApiOperation({ summary: 'Create a new order' })
   @ApiResponse({ status: 201, description: 'Order created successfully.' })
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
-    return this.orderService.createOrder(createOrderDto);
+    return await this.orderService.createOrder(createOrderDto);
   }
 
   @ApiOperation({ summary: 'Update an order' })
@@ -48,7 +48,7 @@ export class OrderController {
     @Param('id', ParseIntPipe) id: number,
     @Body() updateOrderDto: UpdateOrderDto,
   ) {
-    return this.orderService.updateOrder(id, updateOrderDto);
+    return await this.orderService.updateOrder(id, updateOrderDto);
   }
 
   @ApiOperation({ summary: 'Delete an order' })
@@ -56,6 +56,6 @@ export class OrderController {
   @ApiResponse({ status: 404, description: 'Order not found.' })
   @Delete(':id')
   async delete(@Param('id', ParseIntPipe) id: number) {
-    return this.orderService.deleteOrder(id);
+    return await this.orderService.deleteOrder(id);
   }
 }

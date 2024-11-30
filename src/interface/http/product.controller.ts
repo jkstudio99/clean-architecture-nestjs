@@ -22,7 +22,7 @@ export class ProductController {
   @ApiResponse({ status: 200, description: 'Return all products.' })
   @Get()
   async getAll() {
-    return this.productService.getAllProducts();
+    return await this.productService.getAllProducts();
   }
 
   @ApiOperation({ summary: 'Get a product by id' })
@@ -30,24 +30,32 @@ export class ProductController {
   @ApiResponse({ status: 404, description: 'Product not found.' })
   @Get(':id')
   async getById(@Param('id', ParseIntPipe) id: number) {
-    return this.productService.getProductById(id);
+    return await this.productService.getProductById(id);
   }
 
+  @ApiOperation({ summary: 'Create a new product' })
+  @ApiResponse({ status: 201, description: 'Product created successfully.' })
   @Post()
   async create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.createProduct(createProductDto);
+    return await this.productService.createProduct(createProductDto);
   }
 
+  @ApiOperation({ summary: 'Update a product' })
+  @ApiResponse({ status: 200, description: 'Product updated successfully.' })
+  @ApiResponse({ status: 404, description: 'Product not found.' })
   @Put(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateProductDto: UpdateProductDto,
   ) {
-    return this.productService.updateProduct(id, updateProductDto);
+    return await this.productService.updateProduct(id, updateProductDto);
   }
 
+  @ApiOperation({ summary: 'Delete a product' })
+  @ApiResponse({ status: 200, description: 'Product deleted successfully.' })
+  @ApiResponse({ status: 404, description: 'Product not found.' })
   @Delete(':id')
-  async delete(@Param('id') id: number) {
-    return this.productService.deleteProduct(id);
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    return await this.productService.deleteProduct(id);
   }
 }
